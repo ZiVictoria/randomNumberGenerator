@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">Generate numbers</button>
+    <div class="result">
+
+    </div>
+    <script>
+        let btn = document.querySelector("#btn");
+        let result = document.querySelector(".result");
+
+        function getRandomNumbers(min, max){
+            result.innerHTML = "";
+            let arr = [];
+            let summ = 0;
+            let multiplication = 1;
+
+            for (let i = 0; i < 10; i++) {
+                let numbers = Math.floor(Math.random() * (max - min + 1)) + min;
+                arr.push(numbers)
+            }
+
+            let str = arr.join().replace(/,/g, ", ");
+
+            for (let j = 0; j < arr.length; j++){
+                summ += arr[j];
+                multiplication *= arr[j];
+            }
+
+            let average = summ / arr.length;
+
+            min_num = Math.min(...arr);
+            max_num = Math.max(...arr);
+
+            result.innerHTML += `Generated numbers: ${str} <br>`
+            result.innerHTML += `Min: ${min_num} <br>`
+            result.innerHTML += `Max: ${max_num} <br>`
+            result.innerHTML += `Average: ${average} <br>`
+            result.innerHTML += `The sum of numbers: ${summ} <br>`
+            result.innerHTML += `Multiplication: ${multiplication} <br>`
+        }
+
+        btn.addEventListener("click", () => getRandomNumbers(-10, 10));
+
+    </script>
+</body>
+</html>
